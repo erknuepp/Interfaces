@@ -11,6 +11,8 @@
         <Picker x:Name="contentTypePicker" Title="Content Type" />
         <Entry x:Name="contentTitle" Text="" FontSize="16" Placeholder="Enter title" />
         <Button x:Name="addContentButton" Text="Add Content" Clicked="AddContentButtonClicked" Padding="30,10,30,10"/>
+        <Button x:Name="searchContentButton" Text="Search Content" Clicked="SearchContentButtonClicked" Padding="30,10,30,10"/>
+        <Button x:Name="sortContentButton" Text="Sort Content" Clicked="SortContentButtonClicked" Padding="30,10,30,10"/>
         <BoxView 
                    HeightRequest="1"
                    Color="LightGray"

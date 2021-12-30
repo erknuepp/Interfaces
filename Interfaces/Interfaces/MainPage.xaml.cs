@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Xamarin.Forms;
 
@@ -43,7 +44,7 @@
                     contentLibrary.Contents.Add(new Movie(title + " w/ Subtitles", new Subtitle(new Dictionary<string, string> { { "SceneOne", "In a world" } })));
                     break;
                 case "Album":
-                    contentLibrary.Contents.Add(new Album(title));
+                    contentLibrary.Contents.Add(new Album(title, new List<Song> { new Song("Song One"), new Song("Song Two") }));
                     break;
                 case "Song":
                     contentLibrary.Contents.Add(new Song(title));
@@ -79,7 +80,7 @@
                 }
                 else
                 {
-                    stateMessage.Text = $"This action is not supported for {selectedContentItem.GetType().Name} Content Type.";
+                    stateMessage.Text = $"The Play action is not supported for {selectedContentItem.GetType().Name} Content Type.";
                 }
             }
         }
@@ -97,6 +98,10 @@
                 {
                     stateMessage.Text = movie.Read();
                 }
+                else
+                {
+                    stateMessage.Text = $"The Read action is not supported for {selectedContentItem.GetType().Name} Content Type.";
+                }
             }
         }
 
@@ -108,6 +113,10 @@
                 if (selectedContentItem is Movie movie)
                 {
                     stateMessage.Text = movie.View();
+                }
+                else
+                {
+                    stateMessage.Text = $"The View action is not supported for {selectedContentItem.GetType().Name} Content Type.";
                 }
             }
         }
@@ -121,13 +130,17 @@
                 {
                     stateMessage.Text = audioBook.Listen();
                 }
-                if (selectedContentItem is Song song)
+                else if(selectedContentItem is Song song)
                 {
                     stateMessage.Text = song.Listen();
                 }
-                if (selectedContentItem is Album album)
+                else if(selectedContentItem is Album album)
                 {
                     stateMessage.Text = album.Listen();
+                }
+                else
+                {
+                    stateMessage.Text = $"The Listen action is not supported for {selectedContentItem.GetType().Name} Content Type.";
                 }
             }
         }
@@ -138,5 +151,19 @@
             contentLibraryListView.ItemsSource = null;
             contentLibraryListView.ItemsSource = contentLibrary.Contents;
         }
+
+        public void SearchContentButtonClicked(object sender, EventArgs e)
+        {
+            var title = contentTitle.Text;
+            if (contentLibrary.Contents.Select(x => x.GetTitle()).Contains(title))
+            {
+                stateMessage.Text = $"{title} was found";
+            }
+            else
+            {
+                stateMessage.Text = $"{title} was not found, you can select a content type and it.";
+            }
+        }
+
     }
 }

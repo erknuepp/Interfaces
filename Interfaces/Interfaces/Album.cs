@@ -1,9 +1,10 @@
 ﻿namespace Interfaces
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 
-    internal class Album : Audio, IPlayable, IListenable, ICollection<Song>
+    internal class Album : Audio, IPlayable, IListenable, ICollection<Song>, IComparable<Album>
     {
         readonly ICollection<Song> _songs;
         public Album(string title) : base(title)
@@ -68,6 +69,11 @@
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _songs.GetEnumerator();
+        }
+
+        public int CompareTo(Album other)
+        {
+            return CompareTo(other);
         }
 
         public int SongCount => _songs.Count;
