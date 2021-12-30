@@ -1,6 +1,7 @@
 ﻿namespace Interfaces
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     internal sealed class ContentLibrary : IDisposable

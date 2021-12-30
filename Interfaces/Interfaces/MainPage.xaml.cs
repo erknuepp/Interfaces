@@ -164,6 +164,5 @@
                 stateMessage.Text = $"{title} was not found, you can select a content type and it.";
             }
         }
-
     }
 }

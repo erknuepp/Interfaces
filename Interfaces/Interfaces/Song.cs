@@ -25,6 +25,11 @@
             return($"The song {base.GetTitle()} is being listened to.");
         }
 
+        public override string ToString()
+        {
+            return GetTitle();
+        }
+
         public TimeSpan PlayTime => playTime;
     }
 }

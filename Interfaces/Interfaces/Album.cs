@@ -7,6 +7,7 @@
     internal class Album : Audio, IPlayable, IListenable, ICollection<Song>, IComparable<Album>
     {
         readonly ICollection<Song> _songs;
+
         public Album(string title) : base(title)
         {
             _songs = new List<Song>();
@@ -19,7 +20,7 @@
 
         public string Play()
         {
-            return $"The {GetTitle()} album is being played.";
+            return $"The {GetTitle()} album is being played. Songs: {string.Join(", ", _songs)}";
         }
 
         public string Listen()
@@ -76,10 +77,8 @@
             return CompareTo(other);
         }
 
-        public int SongCount => _songs.Count;
+        public int Count => _songs.Count;
 
-        public int Count => throw new System.NotImplementedException();
-
-        public bool IsReadOnly => throw new System.NotImplementedException();
+        public bool IsReadOnly => false;
     }
 }
